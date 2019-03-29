@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('projects', function (table) {
 
-  table.increments("ID");
+  table.increments('ID');
 
   table
     .string('name',128)
@@ -20,7 +20,7 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists("projects");
+  return knex.schema.dropTableIfExists('projects');
 };
 
 // - [ ] A `project` can contain multiple actions and has:
