@@ -13,8 +13,8 @@ exports.up = function(knex, Promise) {
     .notNullable();
 
   table
-    .boolean('isComplete')
-    .notNullable();
+    .boolean('complete')
+    .notNullable()
 
   })
 };
@@ -28,8 +28,3 @@ exports.down = function(knex, Promise) {
 //   - [ ] a name.
 //   - [ ] a description.
 //   - [ ] a flag that indicates if the project is complete or not.
-// - [ ] An `action` belongs to only one project. An action has:
-//   - [ ] a unique id.
-//   - [ ] a description of what needs to be done.
-//   - [ ] a notes column to add additional information.
-//   - [ ] a flag that indicates if the action has been completed.

@@ -20,7 +20,7 @@ exports.up = function(knex, Promise) {
     .notNullable();
 
   table
-    .boolean('isComplete')
+    .boolean('complete')
     .notNullable()
 
   })
