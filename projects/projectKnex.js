@@ -55,17 +55,16 @@ const getByID = async function(ID) {
   //       }
   //     ]
   //   }
-  const Project = await db('projects').where('projects.ID', ID)// = select * from projects where projects.ID = ID
-  const actionList = await db('actions').select('ID','description','notes','complete').where('actions.projectID', ID);
-  const concatProjectActions = (proj,list) => {
+  const concatProjectActions = async (ID) => {
+    const Project = await db('projects').where('projects.ID', ID)// = select * from projects where projects.ID = ID
+    const actions = await db('actions').select('ID','description','notes','complete').where('actions.projectID', ID);
     console.log("Attempted concatenation.")
-    const action = { actions: list };
-    console.log(action);
-    const concatProj = Object.assign(proj,action);
-    return concatProj;
+    console.log(Project,actions)
+    
+    return {Project,actions}
   };
 
-  const finalProject = Object.assign(Project, {actionList});
+  const finalProject = await concatProjectActions(ID);
   console.log(finalProject);
   return finalProject;
 
