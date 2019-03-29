@@ -6,9 +6,9 @@ module.exports = {
     connection: {
       filename: './getitdone.db3',
     },
-    useNullAsDefault: true, // needed for sqlite
+    useNullAsDefault: true,
     migrations: {
-      directory: './data/migrations',
+      directory: './migrations',
     },
     seeds: {
       directory: './seeds',
