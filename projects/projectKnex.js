@@ -16,8 +16,61 @@ function get() {
   return db('projects');
 }
 
-function getByID(ID) {
-  return db('projects').where({ ID });
+const getByID = async function(ID) {
+  console.log(`Attempted getByID with ID ${ID} using knex.`)
+  // goal SQL: select * from projects inner join actions on projects.ID = actions.projectID where projects.ID = 1
+  
+  // missing: inner join actions on projects.ID = actions.projectID
+
+  // return db('projects').where('projects.ID', ID).join('actions', {'projects.ID': 'actions.projectID'})
+  // returns: 
+  //   [
+  //     {
+  //         "ID": 1,
+  //         "name": "Sprint Challenge RDBMS",
+  //         "description": "Build a Projects table",
+  //         "complete": "true",
+  //         "projectID": 1,
+  //         "notes": "Includes DB interactions and POST/GET"
+  //     }
+  // ]
+  // desired shape is:    
+  // {
+  //     id: 1,
+  //     name: 'project name here',
+  //     description: 'the project description',
+  //     completed: false, // or true, the database will return 1 for true and 0 for false
+  //     actions: [
+  //       {
+  //         id: 1,
+  //         description: 'action description',
+  //         notes: 'the action notes',
+  //         completed: false // or true
+  //       },
+  //       {
+  //         id: 7,
+  //         description: 'another action description',
+  //         notes: 'the action notes',
+  //         completed: false // or true
+  //       }
+  //     ]
+  //   }
+  const Project = await db('projects').where('projects.ID', ID)// = select * from projects where projects.ID = ID
+  const actionList = await db('actions').select('ID','description','notes','complete').where('actions.projectID', ID);
+  const concatProjectActions = (proj,list) => {
+    console.log("Attempted concatenation.")
+    const action = { actions: list };
+    console.log(action);
+    const concatProj = Object.assign(proj,action);
+    return concatProj;
+  };
+
+  const finalProject = Object.assign(Project, {actionList});
+  console.log(finalProject);
+  return finalProject;
+
+  // 50 min remaining, alternate strategy: perform two SELECTs, concatenate appropriately into new shape?
+
 }
 
 function insert(newProject) {

@@ -15,6 +15,7 @@ const router = express.Router();
 //   - [ ] a notes column to add additional information.
 //   - [ ] a flag that indicates if the action has been completed.
 
+// Crud
 router.post('/', async (req,res) => {
   let { name, description, complete } = req.body
   const newProject = { name, description, complete }
@@ -38,14 +39,32 @@ router.post('/', async (req,res) => {
   }
 });
 
+//cRud
 router.get('/', async (req,res) => {
   try {
       let reply = await Projects.get();
       res.status(200).json(reply);
+
+    } catch(error) {
+      res.status(500).json({ errorMessage: "GET machine broke." });
+    }
+});
+
+//cRud
+router.get('/:ID', async (req,res) => {
+  const { ID } = req.params;
+
+  try {
+      console.log("Attempted getByID at router.")
+      
+      let reply = await Projects.getByID(ID);
+      res.status(200).json(reply);
+
     } catch(error) {
       res.status(500).json({ errorMessage: "GET machine broke." });
     }
 
 });
+
 
 module.exports = router;

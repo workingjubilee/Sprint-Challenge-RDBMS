@@ -4,9 +4,9 @@ exports.up = function(knex, Promise) {
   table.increments("ID");
 
   table  
-    .integer('projectID') // the column name in this table (users)
+    .integer('projectID')
     .unsigned()
-    .references('ID') // primary key in the related (parent) table (roles)
+    .references('ID')
     .inTable('projects')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
