@@ -17,7 +17,7 @@ function get() {
 }
 
 const getByID = async function(ID) {
-  console.log(`Attempted getByID with ID ${ID} using knex.`)
+
   // goal SQL: select * from projects inner join actions on projects.ID = actions.projectID where projects.ID = 1
   
   // missing: inner join actions on projects.ID = actions.projectID
@@ -58,10 +58,9 @@ const getByID = async function(ID) {
   const concatProjectActions = async (ID) => {
     const Project = await db('projects').where('projects.ID', ID)// = select * from projects where projects.ID = ID
     const actions = await db('actions').select('ID','description','notes','complete').where('actions.projectID', ID);
-    console.log("Attempted concatenation.")
     console.log(Project,actions)
-    
-    return {Project,actions}
+
+    return { ...Project[0], actions }
   };
 
   const finalProject = await concatProjectActions(ID);

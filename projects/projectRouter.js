@@ -22,7 +22,6 @@ router.post('/', async (req,res) => {
   if (undefined === complete) {
     newProject.complete = false
   }
-  console.log(newProject);
 
   if ( !name || !description ) {
     res.status(400).json("Not enough data to POST.")
@@ -56,7 +55,7 @@ router.get('/:ID', async (req,res) => {
 
   try {
       console.log("Attempted getByID at router.")
-      
+
       let reply = await Projects.getByID(ID);
       res.status(200).json(reply);
 

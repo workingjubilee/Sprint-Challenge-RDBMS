@@ -36,11 +36,11 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 Relational Database Management System.
 Search Query Language.
-SQL is a kind of programming languages used by RDBMS in order to interface with them.
+SQL is a family of programming languages used by RDBMS in order to interface with them.
 
 1. Why do tables need a `primary key`?
 
-The concept "key" references the "key" of associative arrays / hash maps, sequences of key-value pairs. A given value has an associated key.
+The concept "key" references the "key" of associative arrays / hash maps, sequences of key-value pairs. A given value has an associated key for easy retrieval.
 
 Primary keys in this case allow a given thing to have an objective reference which is abstract and thus has no grounding in reality and so does not need to change, even if reality changes, and thereby allow it to always have that point of reference so we don't lose track of the data and always have it for disambiguation.
 
