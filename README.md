@@ -33,9 +33,25 @@ This will be akin to the Web API that you built in the last sprint, only this ti
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 1. Explain the difference between `RDBMS` and `SQL`.
+
+Relational Database Management System.
+Search Query Language.
+SQL is a family of programming languages used by RDBMS in order to interface with them.
+
 1. Why do tables need a `primary key`?
+
+The concept "key" references the "key" of associative arrays / hash maps, sequences of key-value pairs. A given value has an associated key for easy retrieval.
+
+Primary keys in this case allow a given thing to have an objective reference which is abstract and thus has no grounding in reality and so does not need to change, even if reality changes, and thereby allow it to always have that point of reference so we don't lose track of the data and always have it for disambiguation.
+
 1. What is the name given to a table column that references the primary key on another table.
+
+We call them "foreign keys" collectively but individually we just give them whatever columnName makes sense.
+
 1. What do we need in order to have a _many to many_ relationship between two tables.
+
+Another table! Specifically a "bridging" table that joins the keys on one table to the keys to another.
+
 
 ## Project Set Up
 
